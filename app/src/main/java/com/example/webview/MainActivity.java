@@ -27,6 +27,7 @@ import android.webkit.GeolocationPermissions;
 import android.webkit.PermissionRequest;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 
 public class MainActivity extends AppCompatActivity {
@@ -55,7 +56,41 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        
+
+
+
+//        Android camera start
+         WebView wv = new WebView(this);
+        WebSettings webSettings = wv.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        webSettings.setAllowFileAccessFromFileURLs(true);
+        webSettings.setAllowUniversalAccessFromFileURLs(true);
+
+//        wv.loadUrl("http://{{Elevate url}}");
+        wv.loadUrl("file:///android_asset/video.html");
+        setContentView(wv);
+
+//        Android location permissions dialog
+        ActivityCompat.requestPermissions(this, new String[]{
+                Manifest.permission.CAMERA
+        }, 0);
+
+
+        wv.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public void onGeolocationPermissionsShowPrompt(String origin, GeolocationPermissions.Callback callback) {
+                callback.invoke(origin, true, false);
+            }
+
+            @Override
+            public void onPermissionRequest(final PermissionRequest request) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    request.grant(request.getResources());
+                }
+            }
+        });
+
+//        Android camera end
 
 ////        Android location start
 //         WebView wv = new WebView(this);
