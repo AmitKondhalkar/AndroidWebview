@@ -1,6 +1,9 @@
-package com.example.locationsample;
+package com.example.webview;
 
 import android.Manifest;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -10,16 +13,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.locationsample.databinding.ActivityMainBinding;
+import com.example.webview.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.GeolocationPermissions;
+import android.webkit.PermissionRequest;
+import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 
@@ -49,27 +55,44 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //
-        WebView wv = new WebView(this);
-//        wv.loadUrl("http://qiteq.pl/stack/index.html");
-        wv.loadUrl("file:///android_asset/index.html");
-        setContentView(wv);
+        
 
-        ActivityCompat.requestPermissions(this, new String[]{
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-        }, 0);
-
-        wv.getSettings().setJavaScriptEnabled(true);
-
-
-        wv.setWebChromeClient(new WebChromeClient() {
-            @Override
-            public void onGeolocationPermissionsShowPrompt(String origin, GeolocationPermissions.Callback callback) {
-                callback.invoke(origin, true, false);
-            }
-        });
+////        Android location start
+//         WebView wv = new WebView(this);
+////        wv.loadUrl("http://{{Elevate url}}");
+//        wv.loadUrl("file:///android_asset/index.html");
+//        setContentView(wv);
+//
+////        Android location permissions dialog
+//        ActivityCompat.requestPermissions(this, new String[]{
+//                Manifest.permission.ACCESS_FINE_LOCATION,
+//                Manifest.permission.ACCESS_COARSE_LOCATION
+//        }, 0);
+//
+//        wv.getSettings().setJavaScriptEnabled(true);
+//
+//
+//        wv.setWebChromeClient(new WebChromeClient() {
+//            @Override
+//            public void onGeolocationPermissionsShowPrompt(String origin, GeolocationPermissions.Callback callback) {
+//                callback.invoke(origin, true, false);
+//            }
+//
+//            @Override
+//            public void onPermissionRequest(final PermissionRequest request) {
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//                    request.grant(request.getResources());
+//                }
+//            }
+//        });
+//
+////        Android location end
     }
+
+    String[] PERMISSIONS = {
+            Manifest.permission.CAMERA,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

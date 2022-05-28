@@ -1,4 +1,4 @@
-package com.example.locationsample;
+package com.example.webview;
 
 import org.junit.Test;
 
