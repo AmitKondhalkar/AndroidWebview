@@ -1,0 +1,42 @@
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+# Various gradle files
+.gradle
+/build
+/gradle
+/gradlew
+/gradlew.bat
+local.properties
+
+# Created/updated by Android Studio
+.cxx
+.idea
+
+# populated from various dependencies
+/include
+/libs
+
+# Ignore gallery ThingMark PDFs and SVGs (which are acquired from Nexus)
+
+# Ignore directory resulting from CMake
+/.externalNativeBuild
+
+# Ignore ASAN additions directory (created by build.gradle when ASAN used)
+/asan_additions
+
+# Ignore cxx additions directory (created by build.gradle)
+/.cxx
